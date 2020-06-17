@@ -1,14 +1,25 @@
-# xGEMV General Matrix-Vector Multiplication Implementation with Halide and C
+# 1. xGEMV General Matrix-Vector Multiplication Implementation with Halide and C
 
 This is an implementation of a BLAS2 (Basic Linear Algebra Subprograms) routine called **xGEMV** or **General Matrix-Vector Multiplication**, its corresponding formula is the following: 
 $$
 y = \alpha A x + \beta y
 $$
+- [1. xGEMV General Matrix-Vector Multiplication Implementation with Halide and C](#1-xgemv-general-matrix-vector-multiplication-implementation-with-halide-and-c)
+  - [1.1. Requirements](#11-requirements)
+  - [1.2. Build](#12-build)
+  - [1.3. Usage](#13-usage)
+    - [1.3.1. Arguments](#131-arguments)
+    - [1.3.2. Execution](#132-execution)
+      - [1.3.2.1. C implementation](#1321-c-implementation)
+      - [1.3.2.2. Halide implementation](#1322-halide-implementation)
+    - [1.3.3. Comparison](#133-comparison)
+      - [1.3.3.1. Using the script](#1331-using-the-script)
+      - [1.3.3.2. Choosing your own values inside Code](#1332-choosing-your-own-values-inside-code)
 
-## Requirements
+## 1.1. Requirements
 This project is based on Halide and C so you will need to install Halide by following [the official guide](https://github.com/halide/Halide/blob/master/README.md) you can either use the binaries or install from source.
 
-## Build
+## 1.2. Build
 
 1. First thing you need to do is clone this repository
 ```
@@ -22,8 +33,8 @@ cd
 ```
 make halidePath="/home/skourta/development/Halide/"
 ```
-## Usage
-### Arguments
+## 1.3. Usage
+### 1.3.1. Arguments
 There are 2 programs in this project, the Halide implementation and the C one, both provide the same arguments:
 1. **debug**: the first argument is a debug flag by setting this argument to a non 0 value, the results will be displayed in the terminal. Its default value is 0, in which case only the execution time will be displayed. `(default 0)`
 2. **aheight**: the 2nd argument is the Height (Number of rows) of the Matrix, it is also the size of the Y vector. `(default 5)`
@@ -39,8 +50,8 @@ There are 2 programs in this project, the Halide implementation and the C one, b
      - `halide_results.txt` for the **Halide** results.
      - `c_results` : for the **C** results.
 
-### Execution
-#### C implementation
+### 1.3.2. Execution
+#### 1.3.2.1. C implementation
 - Execution with default values:  
 ``` 
 bin/c 
@@ -53,7 +64,7 @@ bin/c debug aheight awidth alpha beta random saveFile
 #for example
 bin/c 1 10 5 4 5 0 1
 ```
-#### Halide implementation
+#### 1.3.2.2. Halide implementation
 You need to have the **LD_LIBRARY_PATH** set to the Halide binaries if you don't please use the following:
 - Set a variable to hold the Halide path:
 ```
@@ -72,8 +83,8 @@ LD_LIBRARY_PATH=$halidePath/bin bin/halide debug aheight awidth alpha beta rando
 LD_LIBRARY_PATH=$halidePath/bin bin/halide  0 500 1000 4 5 0 1
 ```
 
-### Comparison
-#### Using the script
+### 1.3.3. Comparison
+#### 1.3.3.1. Using the script
 All you need to do is give the scipt `compare.sh` execution permissions:
 ```
 chmod +x compare.sh
@@ -88,7 +99,7 @@ or using the variable we set earlier:
 ```
 
 The script will display the execution times of both implementations and check if the results are the same
-#### Choosing your own values inside Code
+#### 1.3.3.2. Choosing your own values inside Code
 You will need to run both implemetations with the values you want (refer to the guide above to see how), executing the programs will display their corresponding execution time. Then run the following command to test if the results are identical:
 ```
 diff -s -q results/c_results.txt results/halide_result.txt
