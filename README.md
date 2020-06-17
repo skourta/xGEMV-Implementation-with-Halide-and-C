@@ -1,7 +1,7 @@
 # xGEMV General Matrix-Vector Multiplication Implementation with Halide and C
 
 This is an implementation of a BLAS2 (Basic Linear Algebra Subprograms) routine called **xGEMV** or **General Matrix-Vector Multiplication**, its corresponding formula is the following: 
-![equation](https://latex.codecogs.com/gif.latex?y%20%3D%20%5Calpha%20A%20x%20&plus;%20%5Cbeta%20y)
+![equation](https://latex.codecogs.com/svg.latex?%5Clarge%20y%20%3D%20%5Calpha%20A%20x%20&plus;%20%5Cbeta%20y)
 - [xGEMV General Matrix-Vector Multiplication Implementation with Halide and C](#xgemv-general-matrix-vector-multiplication-implementation-with-halide-and-c)
   - [1.1. Requirements](#11-requirements)
   - [1.2. Build](#12-build)
